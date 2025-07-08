@@ -1,0 +1,29 @@
+<section>
+    <button id="logoutBtn" style="padding: .3rem; margin-bottom: 1rem;">Cerrar sesión</button>
+    <form action="">
+        <label for="nombre">nombre</label>
+        <input type="text" placeholder="John" name="nombre">
+        <label for="apellido">Apellido</label>
+        <input type="text" placeholder="Doe" name="apellido">
+    </form>
+</section>
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        swal.fire({
+            title: 'Logout',
+            text: 'Do you want to log out?',
+            icon: 'warning',
+            confirmButtonColor: '#4d8',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, eliminar la sesión y redirigir
+                localStorage.removeItem('auth');
+                localStorage.removeItem('user');
+                window.location.hash = '#login';
+            }
+        });
+    });
+</script>
