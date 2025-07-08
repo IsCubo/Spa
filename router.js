@@ -3,9 +3,10 @@ import { isAuthenticated } from './src/views/auth.js';
 
 const routes = {
   '#login': './src/views/login.html',
-  '#register': './src/views/register.html',
+  '#new-user': './src/views/new-user.html',
   '#dashboard': './src/views/dashboard.html',
   '#profile': './src/views/profile.html', // NUEVA RUTA
+  '#404': './src/views/404.html',
 };
 
 export async function router() {
@@ -20,7 +21,7 @@ export async function router() {
 
   // Si no existe la vista, redirigir
   if (!view) {
-    window.location.hash = '#login';
+    window.location.hash = '#404';
     return;
   }
 
@@ -31,11 +32,11 @@ export async function router() {
     app.innerHTML = html;
 
     // Ejecuta scripts embebidos
-    
     const scripts = app.querySelectorAll('script');
     scripts.forEach((script) => {
+      const code = `(function(){\n${script.textContent}\n})();`;
       const newScript = document.createElement('script');
-      newScript.textContent = script.textContent;
+      newScript.textContent = code;
       document.body.appendChild(newScript);
       script.remove();
     });

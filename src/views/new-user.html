@@ -1,0 +1,88 @@
+<section>
+    <div>
+        <h2>Register</h2>
+        <p>Welcome! Please fill in the form.</p>
+    </div>
+    <form id="register-form">
+        <label for="name">Name</label>
+        <input type="text" placeholder="John" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" placeholder="correo@example.es" id="email" required>
+        <label for="password">Password</label>
+        <input type="password" placeholder="password" id="password" required>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="#login">Login</a></p>
+    </form>
+    <script>
+        const registerFrom = document.getElementById('register-form');
+
+        registerFrom.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            const email = registerFrom.email.value;
+
+            async function getUser() {
+                try {
+                    const response = await fetch("http://localhost:3000/users");
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const users = await response.json();
+                    const user = users.find(user => user.correo === email);
+                    if (user) {
+                        Swal.fire({
+                            title: 'Try another email',
+                            text: 'This email is already registered',
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                            width: '24em',
+                            theme: 'dark',
+                            background: '#242424',
+                        });
+                    } else {
+                        const newUser = {
+                            nombre: registerFrom.name.value,
+                            correo: email,
+                            contraseña: registerFrom.password.value,
+                            rol: 'estudiante'
+                        };
+                        const postResponse = await fetch("http://localhost:3000/users", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newUser)
+                        });
+                        if (!postResponse.ok) {
+                            throw new Error('Failed to register user');
+                            return;
+                        }
+                        Swal.fire({
+                            title: 'Registration successful',
+                            text: 'You can now log in',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            width: '24em',
+                            theme: 'dark',
+                            background: '#242424',
+                        });
+                        registerFrom.reset();
+                        window.location.hash = '#login';
+                    };
+                } catch (error) {
+                    console.error('Error fetching user:', error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'There was an error processing your request',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        width: '24em',
+                        theme: 'dark',
+                        background: '#242424',
+                    });
+                }
+            }
+            getUser();
+        });
+    </script>
+</section>

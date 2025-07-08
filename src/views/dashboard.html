@@ -1,11 +1,30 @@
 <section>
-    <button id="logoutBtn" style="padding: .3rem; margin-bottom: 1rem;">Cerrar sesión</button>
-    <form action="">
-        <label for="nombre">nombre</label>
-        <input type="text" placeholder="John" name="nombre">
-        <label for="apellido">Apellido</label>
-        <input type="text" placeholder="Doe" name="apellido">
+    <button id="logoutBtn" >Logout</button>
+    <h2>COURSE MANAGER</h2>
+    <form id="course-form">
+        <label for="title">Title course</label>
+        <input type="text" id="title" placeholder="JavaScript" required>
+        <label for="description">Course description</label>
+        <textarea id="description" rows="4" required style="resize: none;" placeholder="In this course you will learn everything you need to know about JavaScript"></textarea>
+        <label for="category">Course category</label>
+        <select id="category" required>
+            <option value="" selected disabled hidden>Select a category</option>
+            <option value="programming">Programming</option>
+            <option value="design">Design</option>
+            <option value="business">Business</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="capacity">Course capacity</label>
+        <input type="number" id="capacity" min="1" max="30" value="1" minlength="1" maxlength="2" required>
+        <label for="instructor">Assigned instructor</label>
+        <input type="text" id="instructor" placeholder="Cristian José" required>
+        <button type="submit">Add course</button>
     </form>
+    <div id="course-list">
+        <h3>Course List</h3>
+        <ul id="courses">
+            <!-- Course items will be dynamically added here -->
+        </ul>
 </section>
 <script>
     document.getElementById('logoutBtn').addEventListener('click', () => {
@@ -17,8 +36,27 @@
             showCancelButton: true,
             confirmButtonText: 'Yes',
             cancelButtonText: 'Cancel',
+            width: '24em',
+            theme: 'dark',
+            background: '#242424',
         }).then((result) => {
             if (result.isConfirmed) {
+                swal.fire({
+                    title: 'Closing',
+                    text: 'please wait...',
+                    width: '24em',
+                    theme: 'dark',
+                    showConfirmButton: false,
+                    background: '#242424',
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        const progressBar = Swal.getTimerProgressBar();
+                        if (progressBar) {
+                            progressBar.style.background = '#444';
+                        }
+                    }
+                });
                 // Si el usuario confirma, eliminar la sesión y redirigir
                 localStorage.removeItem('auth');
                 localStorage.removeItem('user');

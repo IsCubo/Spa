@@ -8,10 +8,17 @@
       "rol": "administrador"
     },
     {
-      "id": "2",
-      "nombre": "user",
-      "correo": "user@user.es",
-      "contraseña": "user123",
+      "id": "b080",
+      "nombre": "vale",
+      "correo": "vale@email.com",
+      "contraseña": "vale123",
+      "rol": "estudiante"
+    },
+    {
+      "id": "0265",
+      "nombre": "elias",
+      "correo": "alias@elias.es",
+      "contraseña": "elias123",
       "rol": "estudiante"
     }
   ],

@@ -1,6 +1,6 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: .2;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -32,6 +32,11 @@ body {
 
 h1 {
   font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.4em;
   line-height: 1.1;
 }
 
@@ -82,18 +87,43 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#login-form, #register-form {
+#login-form, #register-form, #course-form {
+  padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-#login-form input, #register-form input {
-  padding: 1rem;
+#login-form input, #register-form input, #course-form input {
+  padding: .8rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 200px;
+  background-color: #414141;
+}
+input[type="number"] {
+  color: #8f8f8f;
+}
+select, textarea {
+  box-sizing: border-box;
+  padding: .8rem;
+  padding-left: 1rem;
+  background: #414141;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 230px;
+}
+
+select{
+  color: #5a5a5a;
+  font-size: 1.02rem;
+}
+
+option {
+  padding: 1rem;
+  background-color: #414141;
+  color: #eee;
 }
 
 @media (prefers-color-scheme: light) {

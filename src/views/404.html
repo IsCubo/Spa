@@ -1,0 +1,68 @@
+<section>
+    <style>
+        section {
+            background: linear-gradient(135deg, #313131 0%, #4141 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+            color: #646cff;
+            text-shadow: 2px 2px 8px #0008;
+            user-select: none;
+        }
+        .message {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            user-select: none;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            user-select: none;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 32px;
+            background: #646cff;
+            color: #223a8f;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .home-link:hover {
+            background: #fff;
+            color: #2a5298;
+        }
+        @media (max-width: 600px) {
+            .error-code { font-size: 4rem; }
+            .message { font-size: 1.2rem; }
+            .container { padding: 20px 10px; }
+        }
+    </style>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="message">¡Ups! Página no encontrada</div>
+        <p>La página que buscas no existe o fue movida.</p>
+        <a href="#login" class="home-link">Volver al inicio</a>
+    </div>
+</section>
