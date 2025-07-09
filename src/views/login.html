@@ -39,7 +39,13 @@
                         });
                         localStorage.setItem('auth', 'true');
                         localStorage.setItem('user', JSON.stringify(user));
-                        window.location.hash = '#dashboard';
+                        if (user.rol === 'admin') {
+                            window.location.hash = '#dashboard';
+                        } else if (user.rol === 'estudiante') {
+                            window.location.hash = '#register'; // Redirect to register if role is student
+                        } else {
+                            window.location.hash = '#404'; // Redirect to 404 if role is unknown
+                        }
                     } else {
                         Swal.fire({
                             title: 'Login failed',

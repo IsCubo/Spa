@@ -1,0 +1,100 @@
+<section>
+    <button id="logoutBtn">Logout</button>
+    <div>
+        <h2>Courses to apply</h2>
+        <p>Here you can apply to the courses you want</p>
+    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Capacity</th>
+                    <th>Instructor</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="course-list">
+                <!-- Course items will be dynamically added here -->
+            </tbody>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Logout',
+                text: 'Do you want to log out?',
+                icon: 'warning',
+                confirmButtonColor: '#4d8',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel',
+                width: '24em',
+                theme: 'dark',
+                background: '#242424',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Closing',
+                        text: 'please wait...',
+                        width: '24em',
+                        theme: 'dark',
+                        showConfirmButton: false,
+                        background: '#242424',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                        const progressBar = Swal.getTimerProgressBar();
+                        if (progressBar) {
+                            progressBar.style.background = '#444';
+                        }
+                    }
+                    });
+                    localStorage.removeItem('auth');
+                    localStorage.removeItem('user');
+                    window.location.hash = '#login';
+                }
+            });
+        });
+
+        (async function fetchCourses() {
+            try {
+                const response = await fetch("http://localhost:3000/courses");
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const courses = await response.json();
+                const courseList = document.getElementById('course-list');
+                courseList.innerHTML = ''; // Clear existing courses
+
+                courses.forEach(course => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${course.nombre}</td>
+                        <td>${course.descripcion}</td>
+                        <td>${course.categoria}</td>
+                        <td>${course.cupos}</td>
+                        <td>${course.profesor}</td>
+                        <td><button class="apply-btn" data-id="${course.id}">Apply</button></td>
+                    `;
+                    courseList.appendChild(row);
+                });
+
+                document.querySelectorAll('.apply-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        Swal.fire({
+                            title: 'Application sent',
+                            text: 'Your application has been sent successfully',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            width: '24em',
+                            theme: 'dark',
+                            background: '#242424',
+                        });
+                    });
+                });
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        })();
+    </script>
+</section>

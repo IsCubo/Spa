@@ -38,6 +38,8 @@
                             theme: 'dark',
                             background: '#242424',
                         });
+                        registerFrom.reset();
+                        return;
                     } else {
                         const newUser = {
                             nombre: registerFrom.name.value,
@@ -66,8 +68,7 @@
                             theme: 'dark',
                             background: '#242424',
                         });
-                        registerFrom.reset();
-                        window.location.hash = '#login';
+                        window.location.hash = '#register';
                     };
                 } catch (error) {
                     console.error('Error fetching user:', error);
