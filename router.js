@@ -19,12 +19,15 @@ export async function router() {
     return;
   }
 
-  if ((path === "#login" || path === "#new-user") && isAuthenticated()) {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user.rol === "admin") {
-      window.location.hash = "#dashboard";
-      return;
-    }
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // Redirección para administradores a dashboard
+  if (isAuthenticated() && user.rol === "admin" && path !== "#dashboard") {
+    window.location.hash = "#dashboard";
+    return;
+  }
+  // Redirección para estudiantes a registro
+  if (isAuthenticated() && user.rol === "estudiante" && path !== "#register") {
     window.location.hash = "#register";
     return;
   }

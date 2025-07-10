@@ -2,56 +2,12 @@
   "users": [
     {
       "id": "1",
-      "nombre": "admin",
+      "nombre": "administrador",
       "correo": "admin@admin.es",
       "contraseña": "admin123",
       "rol": "admin"
-    },
-    {
-      "id": "b080",
-      "nombre": "vale",
-      "correo": "vale@email.com",
-      "contraseña": "vale123",
-      "rol": "estudiante"
-    },
-    {
-      "id": "0265",
-      "nombre": "elias",
-      "correo": "alias@elias.es",
-      "contraseña": "elias123",
-      "rol": "estudiante"
-    },
-    {
-      "id": "e327",
-      "nombre": "lucas",
-      "correo": "lucas@gmail.com",
-      "contraseña": "lucas123",
-      "rol": "estudiante"
-    },
-    {
-      "id": "cf22",
-      "nombre": "Jhon Juan",
-      "correo": "jhon@gmail.com",
-      "contraseña": "jhon123",
-      "rol": "estudiante"
     }
   ],
   "courses": [
-    {
-      "id": "1",
-      "nombre": "Course JavaScript",
-      "descripcion": "Learn JavaScript from scratch",
-      "categoria": "Programming",
-      "profesor": "Sergio Bonilla",
-      "cupos": 10
-    },
-    {
-      "id": "2",
-      "nombre": "Course Python",
-      "descripcion": "Learn Python from scratch",
-      "categoria": "Programming",
-      "profesor": "Hectooor Gonzalez",
-      "cupos": 10
-    }
   ]
 }

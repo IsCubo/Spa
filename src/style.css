@@ -102,9 +102,11 @@ button:focus-visible {
   width: 200px;
   background-color: #414141;
 }
+
 input[type="number"] {
   color: #eee;
 }
+
 select, textarea {
   box-sizing: border-box;
   padding: .8rem;
@@ -116,10 +118,8 @@ select, textarea {
 }
 
 .apply-btn{
-  padding: 0;
-  padding: .3rem;
+  padding: .5rem 1rem;
   font-size: small;
-  width: 50px;
 }
 
 table {
